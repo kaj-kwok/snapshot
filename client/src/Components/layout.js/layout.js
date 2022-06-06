@@ -11,6 +11,7 @@ const Layout = ({ children }) => {
       fixed
       navbar={<Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
         <MainLinks />
+
       </Navbar>
       }
       header={<Header height={70} p="md" style={{ display: "flex", justifyContent: "space-between" }} >
