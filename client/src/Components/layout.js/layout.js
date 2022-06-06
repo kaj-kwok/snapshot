@@ -1,5 +1,6 @@
 import { AppShell, Navbar, Header, Text, Burger, MediaQuery } from '@mantine/core';
 import { useState } from 'react'
+import Darkmode from '../Darkmode';
 
 const Layout = ({ children }) => {
   const [opened, setOpened] = useState(false);
@@ -8,12 +9,13 @@ const Layout = ({ children }) => {
       navbarOffsetBreakpoint="sm"
       fixed
       navbar={<Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-        <Text>Create</Text>
+        <Text>Home</Text>
         <Text>My Posts</Text>
+        <Text>Create</Text>
         <Text>Filter</Text>
       </Navbar>
       }
-      header={<Header height={70} p="md">
+      header={<Header height={70} p="md" style={{ display: "flex", justifyContent: "space-between" }} >
         <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Burger
@@ -25,6 +27,9 @@ const Layout = ({ children }) => {
           </MediaQuery>
 
           <Text>Create Memories</Text>
+        </div>
+        <div>
+          <Darkmode />
         </div>
       </Header>
       }

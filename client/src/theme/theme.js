@@ -1,7 +1,6 @@
-import { MantineThemeOverride } from "@mantine/core";
+// import { MantineThemeOverride } from "@mantine/core";
 
-const myTheme: MantineThemeOverride = {
-  colorScheme: 'dark',
+const myTheme = {
   fontFamily: "Montserrat, sans-serif",
 };
 
