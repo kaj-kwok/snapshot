@@ -4,19 +4,44 @@ import { useForm } from '@mantine/form';
 const CreatePost = () => {
   const form = useForm({
     initialValues: {
-      email: '',
-
+      creator: '',
+      title: '',
+      description: '',
+      tags: [],
+      uploadedFile: ''
     }
   })
 
+  const handleSubmit = (values) => {
+    console.log(values)
+  }
+
   return (
     <Box sx={{ maxWidth: 300 }} mx="auto">
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
         <TextInput
           required
-          label="Email"
-          placeholder="your@email.com"
-          {...form.getInputProps('email')}
+          label="Creator"
+          placeholder="Creator"
+          {...form.getInputProps('creator')}
+        />
+        <TextInput
+          required
+          label="Title"
+          placeholder="Title"
+          {...form.getInputProps('title')}
+        />
+        <TextInput
+          required
+          label="Description"
+          placeholder="Description"
+          {...form.getInputProps('description')}
+        />
+        <TextInput
+          required
+          label="Tags"
+          placeholder="Tags"
+          {...form.getInputProps('tags')}
         />
         <Group position="right" mt="md">
           <Button type="submit">Create Post</Button>
