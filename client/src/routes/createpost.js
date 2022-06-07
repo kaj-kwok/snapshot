@@ -1,5 +1,16 @@
-import { Box, TextInput, Group, Button } from '@mantine/core'
+import { Box, TextInput, Group, Button, CSSObject } from '@mantine/core'
 import { useForm } from '@mantine/form';
+import Dropzone from '../Components/dropzone';
+
+const useStyle: CSSObject = {
+  border: '1px dashed white',
+  height: '150px',
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0.5em',
+  marginTop: "2em",
+  marginBottom: "2em"
+}
 
 const CreatePost = () => {
   const form = useForm({
@@ -43,6 +54,9 @@ const CreatePost = () => {
           placeholder="Tags"
           {...form.getInputProps('tags')}
         />
+        <Box sx={useStyle}>
+          <Dropzone />
+        </Box>
         <Group position="right" mt="md">
           <Button type="submit">Create Post</Button>
         </Group>
