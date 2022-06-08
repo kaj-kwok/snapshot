@@ -1,22 +1,19 @@
-import { SimpleGrid } from "@mantine/core";
+import { Container } from "@mantine/core";
+import { fetchAllPosts } from "../actions/posts";
+import { useEffect } from 'react'
+import { useDispatch } from "react-redux";
+import Posts from "./posts/posts";
 
 const Home = () => {
-  return (
-    <SimpleGrid
-      cols={3}
-      spacing="lg"
-      breakpoints={[
-        { maxWidth: 'md', cols: 2, spacing: 'sm' },
-        { maxWidth: 'sm', cols: 1, spacing: 'sm' }
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchAllPosts())
+  }, [])
 
-      ]}>
-      <div>w</div>
-      <div>w</div>
-      <div>w</div>
-      <div>w</div>
-      <div>w</div>
-      <div>w</div>
-    </SimpleGrid>
+  return (
+    <Container>
+      <Posts />
+    </Container>
   )
 }
 

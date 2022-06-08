@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { Box, TextInput, Group, Button, CSSObject } from '@mantine/core'
 import { useForm } from '@mantine/form';
 import Dropzone from '../Components/dropzone';
+import { useSelector, useDispatch } from 'react-redux'
+import { createNewPost } from '../actions/posts'
 
 const useStyle: CSSObject = {
   border: '1px dashed white',
@@ -13,6 +16,7 @@ const useStyle: CSSObject = {
 }
 
 const CreatePost = () => {
+  const [file, setFile] = useState('')
   const form = useForm({
     initialValues: {
       creator: '',
@@ -22,14 +26,20 @@ const CreatePost = () => {
       uploadedFile: ''
     }
   })
+  const dispatch = useDispatch()
 
-  const handleSubmit = (values) => {
-    console.log(values)
+  const handleSubmitForm = (values) => {
+    const post = { ...values, uploadedFile: file }
+    dispatch(createNewPost(post))
+  }
+
+  const handleClearForm = () => {
+
   }
 
   return (
     <Box sx={{ maxWidth: 300 }} mx="auto">
-      <form onSubmit={form.onSubmit(handleSubmit)}>
+      <form onSubmit={form.onSubmit(handleSubmitForm)}>
         <TextInput
           required
           label="Creator"
@@ -55,7 +65,7 @@ const CreatePost = () => {
           {...form.getInputProps('tags')}
         />
         <Box sx={useStyle}>
-          <Dropzone />
+          <Dropzone setFile={setFile} />
         </Box>
         <Group position="right" mt="md">
           <Button type="submit">Create Post</Button>

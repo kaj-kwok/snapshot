@@ -2,11 +2,26 @@ import { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Box, Text } from '@mantine/core'
 
+//convert file to base64
+const convertBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
 
-const MyDropzone = () => {
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
 
-  const onDrop = useCallback(acceptedFiles => {
-    // Do something with the files
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};
+
+const MyDropzone = ({ setFile }) => {
+  const onDrop = useCallback(async (acceptedFiles) => {
+    const encodedFile = await convertBase64(acceptedFiles[0])
+    setFile(encodedFile)
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
