@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Box, TextInput, Group, Button, CSSObject } from '@mantine/core'
 import { useForm } from '@mantine/form';
 import Dropzone from '../Components/dropzone';
 import { useSelector, useDispatch } from 'react-redux'
 import { createNewPost } from '../actions/posts'
+import { useParams } from "react-router-dom";
 
 const useStyle: CSSObject = {
   border: '1px dashed white',
@@ -16,6 +17,14 @@ const useStyle: CSSObject = {
 }
 
 const CreatePost = () => {
+  const { slug } = useParams()
+  const post = useSelector((state) => (slug ? state.posts.find((message) => message._id === slug) : null));
+
+  useEffect(() => {
+    if (post) form.setValues(post)
+  }, [])
+
+
   const [file, setFile] = useState('')
   const form = useForm({
     initialValues: {
@@ -27,6 +36,7 @@ const CreatePost = () => {
     }
   })
   const dispatch = useDispatch()
+
 
   const handleSubmitForm = (values) => {
     const tags = values.tags.split(',')

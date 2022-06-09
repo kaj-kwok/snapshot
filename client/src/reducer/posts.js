@@ -7,10 +7,14 @@ const postReducer = createSlice({
   initialState,
   reducers: {
     create: (state, action) => {
-      console.log(action.payload)
+      const post = action.payload
+      state.push(post)
     },
     fetch_all: (state, action) => {
       return action.payload
+    },
+    edit: (state, action) => {
+      console.log(action.payload)
     }
   }
 })

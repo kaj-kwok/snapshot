@@ -3,6 +3,8 @@ import fileNotFound from '../../assets/filenotfound.png'
 import moment from 'moment';
 import { IconThumbUp } from '@tabler/icons';
 import { IconTrash } from '@tabler/icons';
+import { IconDots } from '@tabler/icons';
+import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
 
@@ -19,6 +21,23 @@ const Post = ({ post }) => {
       style={{ position: "relative" }}>
       <Card.Section style={{ position: "relative" }}>
         <Image src={post.uploadedFile || fileNotFound} height={250} width="100%" fit="contain" />
+        <Link to={`/editpost/${post._id}`}>
+          <UnstyledButton
+            sx={{
+              '&:hover': {
+                color: "#4267B2"
+              }
+            }}
+            style={{
+              position: "absolute",
+              top: 5,
+              right: 5
+            }}
+            onClick={() => console.log("edit click", post._id)}
+          >
+
+            <IconDots /></UnstyledButton>
+        </Link>
         <Group
           id="textbox"
           sx={{
@@ -76,9 +95,19 @@ const Post = ({ post }) => {
           }}
         >
           <UnstyledButton
+            sx={{
+              '&:hover': {
+                color: "#4267B2"
+              }
+            }}
             onClick={() => console.log("clicked like")}
           ><IconThumbUp /></UnstyledButton>
           <UnstyledButton
+            sx={{
+              '&:hover': {
+                color: "#4267B2"
+              }
+            }}
             onClick={() => console.log("clicked delete")}
           ><IconTrash /></UnstyledButton>
         </Group>
