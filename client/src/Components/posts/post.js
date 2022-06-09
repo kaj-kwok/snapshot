@@ -1,6 +1,8 @@
-import { Card, Image, Text, Group, CardSection } from "@mantine/core";
+import { Card, Image, Text, Group, Badge } from "@mantine/core";
 import fileNotFound from '../../assets/filenotfound.png'
-import moment from 'moment'
+import moment from 'moment';
+import { IconThumbUp } from '@tabler/icons';
+import { IconTrash } from '@tabler/icons';
 
 const Post = ({ post }) => {
 
@@ -8,9 +10,9 @@ const Post = ({ post }) => {
 
     <Card shadow="sm" p="lg" sx={{
       '&:hover': {
+        transform: "scale(1.1)",
         '#textbox': {
           opacity: 1,
-
         }
       }
     }}>
@@ -28,21 +30,46 @@ const Post = ({ post }) => {
             zIndex: 50,
             color: '#FFF',
             fontWeight: '600',
-            justifyContent: 'space-between',
-            padding: "10px",
-            textShadow: "2px 2px #ff0000"
+            textShadow: "2px 2px #ff0000",
+            gap: 0,
+            paddingLeft: "10px",
+            paddingRight: "10px"
           }}
-          direction="row">
-          <Text>{post.creator}</Text>
-          <Text>{moment(post.createdAt).fromNow()}</Text>
+          direction="column">
+
+          <Text>{post.title}</Text>
+          <Group
+            style={{
+              justifyContent: 'space-between',
+              width: "100%",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: "12px",
+                fontWeight: "400"
+              }}
+            >by {post.creator}</Text>
+            <Text>{moment(post.createdAt).fromNow()}</Text>
+          </Group>
         </Group>
       </Card.Section>
-      <CardSection>
-        <Text>{post.tags.map(tag => `#${tag} `)}</Text>
-        <Text>
-          {post.description}
-        </Text>
-      </CardSection>
+      <Card.Section>{post.tags.map(tag => <Badge
+        style={{ margin: "5px" }}
+      >{`#${tag}`}</Badge>)}
+      </Card.Section>
+      <Text>
+        {post.description}
+      </Text>
+      <Group
+        style={{
+          justifyContent: "space-between",
+          marginTop: "10px"
+        }}
+      >
+        <IconThumbUp />
+        <IconTrash />
+      </Group>
     </Card>
   )
 }
