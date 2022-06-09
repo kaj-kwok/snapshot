@@ -17,9 +17,7 @@ const Posts = () => {
         ]}
       >
         {posts.map(post => (
-          <Box key={post._id}>
-            <Post post={post} />
-          </Box>
+          <Post key={post._id} post={post} />
         ))}
       </SimpleGrid>
     )
