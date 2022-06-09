@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Box, TextInput, Group, Button, CSSObject } from '@mantine/core'
+import { Box, TextInput, Group, Button, CSSObject, useMantineTheme } from '@mantine/core'
 import { useForm } from '@mantine/form';
-import Dropzone from '../Components/dropzone';
+// import Dropzone from '../Components/dropzone';
 import { useSelector, useDispatch } from 'react-redux'
 import { createNewPost } from '../actions/posts'
 import { useParams } from "react-router-dom";
+import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { dropzoneChildren } from '../Components/formdropzone';
 
 const useStyle: CSSObject = {
   border: '1px dashed white',
@@ -17,13 +19,13 @@ const useStyle: CSSObject = {
 }
 
 const CreatePost = () => {
+  const theme = useMantineTheme();
   const { slug } = useParams()
   const post = useSelector((state) => (slug ? state.posts.find((message) => message._id === slug) : null));
 
   useEffect(() => {
     if (post) form.setValues(post)
   }, [])
-
 
   const [file, setFile] = useState('')
   const form = useForm({
@@ -75,9 +77,18 @@ const CreatePost = () => {
           placeholder="Tags"
           {...form.getInputProps('tags')}
         />
-        <Box sx={useStyle}>
+        <Dropzone
+          onDrop={(files) => console.log('accepted files', files)}
+          onReject={(files) => console.log('rejected files', files)}
+          maxSize={3 * 1024 ** 2}
+          accept={IMAGE_MIME_TYPE}
+        >
+          {(status) => dropzoneChildren(status, theme)}
+        </Dropzone>
+
+        {/* <Box sx={useStyle}>
           <Dropzone setFile={setFile} />
-        </Box>
+        </Box> */}
         <Group position="right" mt="md">
           <Button type="submit">Create Post</Button>
         </Group>
