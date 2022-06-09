@@ -1,4 +1,4 @@
-import { Card, Image, Text, Group, Badge, CardSection } from "@mantine/core";
+import { Card, Image, Text, Group, Badge, CardSection, Button, UnstyledButton } from "@mantine/core";
 import fileNotFound from '../../assets/filenotfound.png'
 import moment from 'moment';
 import { IconThumbUp } from '@tabler/icons';
@@ -73,21 +73,17 @@ const Post = ({ post }) => {
             paddingLeft: "10px",
             paddingRight: "10px",
             paddingBottom: "10px"
-
           }}
         >
-          <IconThumbUp as="button"
-            style={{
-              '&:hover': {
-                color: 'red'
-              }
-            }}
-          />
-          <IconTrash
-          />
+          <UnstyledButton
+            onClick={() => console.log("clicked like")}
+          ><IconThumbUp /></UnstyledButton>
+          <UnstyledButton
+            onClick={() => console.log("clicked delete")}
+          ><IconTrash /></UnstyledButton>
         </Group>
       </CardSection>
-    </Card>
+    </Card >
   )
 }
 

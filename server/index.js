@@ -4,6 +4,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import bodyParser from "body-parser"
 import postRoutes from "./routes/posts.js"
+import cors from 'cors'
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 4000;
 app.use(morgan('combined'))
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
+app.use(cors())
 
 app.use('/posts', postRoutes)
 

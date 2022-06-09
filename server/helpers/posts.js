@@ -10,8 +10,8 @@ export const getAllPosts = async (req, res) => {
 }
 
 export const createPost = async (req, res) => {
+  console.log("req.body", req.body);
   const post = req.body;
-
   const newPost = new Post(post)
 
   try {
