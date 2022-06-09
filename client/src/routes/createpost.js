@@ -29,7 +29,8 @@ const CreatePost = () => {
   const dispatch = useDispatch()
 
   const handleSubmitForm = (values) => {
-    const post = { ...values, uploadedFile: file }
+    const tags = values.tags.split(',')
+    const post = { ...values, uploadedFile: file, tags: tags }
     dispatch(createNewPost(post))
   }
 
