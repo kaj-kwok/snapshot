@@ -14,10 +14,10 @@ const postReducer = createSlice({
       return action.payload
     },
     edit: (state, action) => {
-      console.log(action.payload)
+      state.map((post) => (post._id === action.payload ? action.payload : post))
     }
   }
 })
 
-export const { create, fetch_all } = postReducer.actions
+export const { create, fetch_all, edit } = postReducer.actions
 export default postReducer.reducer

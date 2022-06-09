@@ -1,4 +1,5 @@
 import Post from "../db/schema.js"
+import mongoose from 'mongoose';
 
 export const getAllPosts = async (req, res) => {
   try {
@@ -20,5 +21,17 @@ export const createPost = async (req, res) => {
     res.status(201).json(newPost)
   } catch (error) {
     res.status(409).json({ message: error.message })
+  }
+}
+
+export const editPost = async (req, res) => {
+  const { id } = req.params
+  const post = req.body
+  if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post Found with id: ${id}`)
+  try {
+    const updatePost = await Post.findByIdAndUpdate(id, post)
+    res.status(201).json(updatePost)
+  } catch (error) {
+    console.log(error);
   }
 }

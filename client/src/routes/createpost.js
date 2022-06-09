@@ -3,10 +3,11 @@ import { Box, TextInput, Group, Button, CSSObject, useMantineTheme } from '@mant
 import { useForm } from '@mantine/form';
 // import Dropzone from '../Components/dropzone';
 import { useSelector, useDispatch } from 'react-redux'
-import { createNewPost } from '../actions/posts'
+import { createNewPost, updatePost } from '../actions/posts'
 import { useParams } from "react-router-dom";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
-import { dropzoneChildren } from '../Components/formdropzone';
+import { dropzoneChildren } from '../Components/form/formdropzone';
+import { convertBase64 } from '../Components/form/convertbase64'
 
 const useStyle: CSSObject = {
   border: '1px dashed white',
@@ -24,7 +25,10 @@ const CreatePost = () => {
   const post = useSelector((state) => (slug ? state.posts.find((message) => message._id === slug) : null));
 
   useEffect(() => {
-    if (post) form.setValues(post)
+    if (post) {
+      form.setValues(post)
+      setFile(post.uploadedFile)
+    }
   }, [])
 
   const [file, setFile] = useState('')
@@ -41,9 +45,15 @@ const CreatePost = () => {
 
 
   const handleSubmitForm = (values) => {
-    const tags = values.tags.split(',')
-    const post = { ...values, uploadedFile: file, tags: tags }
-    dispatch(createNewPost(post))
+    console.log(values);
+    if (slug) {
+      const post = { ...values, uploadedFile: file }
+      dispatch(updatePost(slug, post))
+    } else {
+      const tags = values.tags.split(',')
+      const post = { ...values, uploadedFile: file, tags: tags }
+      dispatch(createNewPost(post))
+    }
   }
 
   const handleClearForm = () => {
@@ -78,10 +88,18 @@ const CreatePost = () => {
           {...form.getInputProps('tags')}
         />
         <Dropzone
-          onDrop={(files) => console.log('accepted files', files)}
+          onDrop={async (files) => {
+            console.log('accepted files', files)
+            const encodedFile = await convertBase64(files[0])
+            setFile(encodedFile)
+          }}
           onReject={(files) => console.log('rejected files', files)}
           maxSize={3 * 1024 ** 2}
           accept={IMAGE_MIME_TYPE}
+          multiple={false}
+          style={{
+            marginTop: "20px"
+          }}
         >
           {(status) => dropzoneChildren(status, theme)}
         </Dropzone>

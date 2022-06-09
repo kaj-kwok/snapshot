@@ -1,5 +1,5 @@
-import { create, fetch_all } from "../reducer/posts"
-import { createPost, getAllPosts } from "../api/helpers"
+import { create, fetch_all, edit } from "../reducer/posts"
+import { createPost, getAllPosts, editPost } from "../api/helpers"
 
 export const createNewPost = (post) => async (dispatch) => {
   try {
@@ -20,6 +20,11 @@ export const fetchAllPosts = () => async (dispatch) => {
   }
 }
 
-export const editPost = (id) => async (dispatch) => {
-
+export const updatePost = (id, post) => async (dispatch) => {
+  try {
+    const { data } = await editPost(id, post)
+    dispatch(edit(data))
+  } catch (error) {
+    console.log(error);
+  }
 }
