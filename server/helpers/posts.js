@@ -35,3 +35,14 @@ export const editPost = async (req, res) => {
     console.log(error);
   }
 }
+
+export const deletePost = async (req, res) => {
+  const { id } = req.params
+  if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post Found with id: ${id}`)
+  try {
+    const deletePost = await Post.findByIdAndDelete(id)
+    res.status(201).json(deletePost)
+  } catch (error) {
+    console.log(error);
+  }
+}

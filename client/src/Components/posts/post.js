@@ -5,11 +5,13 @@ import { IconThumbUp } from '@tabler/icons';
 import { IconTrash } from '@tabler/icons';
 import { IconDots } from '@tabler/icons';
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../actions/posts";
 
 const Post = ({ post }) => {
+  const dispatch = useDispatch()
 
   return (
-
     <Card shadow="sm" p="lg" sx={{
       '&:hover': {
         transform: "scale(1.1)",
@@ -108,7 +110,10 @@ const Post = ({ post }) => {
                 color: "#4267B2"
               }
             }}
-            onClick={() => console.log("clicked delete")}
+            onClick={() => {
+              console.log("clicked delete", post._id)
+              dispatch(deletePost(post._id))
+            }}
           ><IconTrash /></UnstyledButton>
         </Group>
       </CardSection>
