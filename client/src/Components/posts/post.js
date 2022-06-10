@@ -14,7 +14,7 @@ const Post = ({ post }) => {
   return (
     <Card shadow="sm" p="lg" sx={{
       '&:hover': {
-        transform: "scale(1.1)",
+        transform: "scale(1.05)",
         '#textbox': {
           opacity: 1,
         }
@@ -111,7 +111,6 @@ const Post = ({ post }) => {
               }
             }}
             onClick={() => {
-              console.log("clicked delete", post._id)
               dispatch(deletePost(post._id))
             }}
           ><IconTrash /></UnstyledButton>

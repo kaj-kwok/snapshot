@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Box, TextInput, Group, Button, CSSObject, useMantineTheme } from '@mantine/core'
 import { useForm } from '@mantine/form';
-// import Dropzone from '../Components/dropzone';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { createNewPost, updatePost } from '../actions/posts'
 import { useParams } from "react-router-dom";
@@ -23,13 +23,7 @@ const CreatePost = () => {
   const theme = useMantineTheme();
   const { slug } = useParams()
   const post = useSelector((state) => (slug ? state.posts.find((message) => message._id === slug) : null));
-
-  useEffect(() => {
-    if (post) {
-      form.setValues(post)
-      setFile(post.uploadedFile)
-    }
-  }, [])
+  const navigate = useNavigate()
 
   const [file, setFile] = useState('')
   const form = useForm({
@@ -43,6 +37,12 @@ const CreatePost = () => {
   })
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    if (post) {
+      form.setValues(post)
+      setFile(post.uploadedFile)
+    }
+  }, [])
 
   const handleSubmitForm = (values) => {
     console.log(values);
@@ -54,10 +54,13 @@ const CreatePost = () => {
       const post = { ...values, uploadedFile: file, tags: tags }
       dispatch(createNewPost(post))
     }
+    handleClearForm()
+    navigate("/")
   }
 
   const handleClearForm = () => {
-
+    form.reset()
+    setFile('')
   }
 
   return (
@@ -103,10 +106,6 @@ const CreatePost = () => {
         >
           {(status) => dropzoneChildren(status, theme)}
         </Dropzone>
-
-        {/* <Box sx={useStyle}>
-          <Dropzone setFile={setFile} />
-        </Box> */}
         <Group position="right" mt="md">
           <Button type="submit">Create Post</Button>
         </Group>
