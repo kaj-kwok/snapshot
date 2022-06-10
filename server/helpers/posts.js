@@ -29,7 +29,7 @@ export const editPost = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post Found with id: ${id}`)
   try {
     const updatePost = await Post.findByIdAndUpdate(id, post)
-    res.status(201).json(updatePost)
+    res.status(200).json(updatePost)
   } catch (error) {
     console.log(error);
   }
@@ -40,7 +40,7 @@ export const deletePost = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post Found with id: ${id}`)
   try {
     const deletePost = await Post.findByIdAndDelete(id)
-    res.status(201).json(deletePost)
+    res.status(200).json(deletePost)
   } catch (error) {
     console.log(error);
   }
@@ -49,7 +49,18 @@ export const deletePost = async (req, res) => {
 export const getTags = async (req, res) => {
   try {
     const tags = await Post.distinct("tags")
-    res.status(201).json(tags)
+    res.status(200).json(tags)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const searchByTag = async (req, res) => {
+  const { tags } = req.query
+  console.log(tags);
+  try {
+    const posts = await Post.find({ tags: { $in: tags.split(',') } })
+    res.status(200).json(posts)
   } catch (error) {
     console.log(error);
   }

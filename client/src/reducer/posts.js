@@ -18,9 +18,12 @@ const postReducer = createSlice({
     },
     delete_Post: (state, action) => {
       return state.filter((post) => (post._id !== action.payload))
+    },
+    fetchBySearch: (state, action) => {
+      return action.payload
     }
   }
 })
 
-export const { create, fetch_all, edit, delete_Post } = postReducer.actions
+export const { create, fetch_all, edit, delete_Post, fetchBySearch } = postReducer.actions
 export default postReducer.reducer
