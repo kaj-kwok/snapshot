@@ -35,9 +35,7 @@ const Post = ({ post }) => {
               top: 5,
               right: 5
             }}
-            onClick={() => console.log("edit click", post._id)}
           >
-
             <IconDots /></UnstyledButton>
         </Link>
         <Group

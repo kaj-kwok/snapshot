@@ -45,9 +45,10 @@ const CreatePost = () => {
   }, [])
 
   const handleSubmitForm = (values) => {
-    console.log(values);
+    console.log(values)
     if (slug) {
-      const post = { ...values, uploadedFile: file }
+      const tags = values.tags.toString().split(',')
+      const post = { ...values, uploadedFile: file, tags: tags }
       dispatch(updatePost(slug, post))
     } else {
       const tags = values.tags.split(',')
