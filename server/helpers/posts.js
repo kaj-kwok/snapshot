@@ -45,3 +45,12 @@ export const deletePost = async (req, res) => {
     console.log(error);
   }
 }
+
+export const getTags = async (req, res) => {
+  try {
+    const tags = await Post.distinct("tags")
+    res.status(201).json(tags)
+  } catch (error) {
+    console.log(error);
+  }
+}
