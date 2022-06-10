@@ -1,4 +1,4 @@
-import { AppShell, Navbar, Header, Text, Burger, MediaQuery } from '@mantine/core';
+import { AppShell, Navbar, Header, Text, Burger, MediaQuery, Box } from '@mantine/core';
 import { useState } from 'react'
 import Darkmode from '../Darkmode';
 import { SearchBar } from '../SearchBar/SearchBar';
@@ -27,11 +27,13 @@ const Layout = ({ children }) => {
           </MediaQuery>
 
           <Text>Create Memories</Text>
+        </div>
+        <Box
+          style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}
+        >
           <SearchBar />
-        </div>
-        <div>
           <Darkmode />
-        </div>
+        </Box>
       </Header>
       }
     >

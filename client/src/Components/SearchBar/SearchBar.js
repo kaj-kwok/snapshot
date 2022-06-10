@@ -30,7 +30,7 @@ export const SearchBar = () => {
     <MultiSelect
       icon={<Hash />}
       data={tagsAvailable}
-      label="All your tags"
+      // label="All your tags"
       placeholder="Pick your tags"
       onDropdownOpen={() => setOpened(true)}
       onDropdownClose={() => setOpened(false)}
