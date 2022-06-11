@@ -50,7 +50,7 @@ const Post = ({ post }) => {
             zIndex: 50,
             color: '#FFF',
             fontWeight: '600',
-            textShadow: "2px 2px #ff0000",
+            textShadow: "2px 2px #000000",
             gap: 0,
             paddingLeft: "10px",
             paddingRight: "10px"
