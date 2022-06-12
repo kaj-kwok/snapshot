@@ -27,6 +27,7 @@ function App() {
                   <Route path="createpost/" element={<CreatePost />} />
                   <Route path="editpost/:slug" element={<CreatePost />} />
                   <Route path="search" element={<Search />} />
+                  <Route path="*" element={<p>Oops page not found</p>} />
                 </Route>
               </Routes>
             </div>
