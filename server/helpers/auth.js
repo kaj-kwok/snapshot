@@ -3,8 +3,26 @@ import User from '../db/users.js'
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt'
 
-export const userLogin = (req, res) => {
+export const userLogin = async (req, res) => {
   const { username, password } = req.body
+  try {
+    const user = await User.findOne({ username: username })
+    if (!user) {
+      res.status(404).json({
+        message: "Login failed"
+      })
+    }
+    if (user && bcrypt.compareSync(password, user.password)) {
+      const token = jwt.sign({
+        user_id: user._id,
+        name: user.name
+      }, process.env.TOKEN_KEY)
+      const returnedUser = { id: user._id, name: user.name, token: token }
+      res.status(200).json(returnedUser)
+    }
+  } catch (error) {
+    res.json(error)
+  }
 }
 
 export const userRegister = async (req, res) => {
