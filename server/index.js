@@ -4,7 +4,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import bodyParser from "body-parser"
 import postRoutes from "./routes/posts.js"
-// import authRoutes from './routes/auth.js'
+import authRoutes from './routes/auth.js'
 import cors from 'cors'
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors())
 
 app.use('/posts', postRoutes)
-// app.use('/auth', authRoutes)
+app.use('/auth', authRoutes)
 
 app.get("/", (req, res) => {
   res.send("HOLA MUNDO")
