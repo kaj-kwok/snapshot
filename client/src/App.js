@@ -8,6 +8,7 @@ import CreatePost from './routes/createpost';
 import Home from './Components/Home'
 import Posts from './Components/Posts';
 import Search from './Components/Search';
+import Login from './Components/login/login'
 
 function App() {
   const [colorScheme, setColorScheme] = useState('dark');
@@ -27,6 +28,7 @@ function App() {
                   <Route path="createpost/" element={<CreatePost />} />
                   <Route path="editpost/:slug" element={<CreatePost />} />
                   <Route path="search" element={<Search />} />
+                  <Route path="login" element={<Login />} />
                   <Route path="*" element={<p>Oops page not found</p>} />
                 </Route>
               </Routes>

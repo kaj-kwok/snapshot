@@ -1,6 +1,7 @@
 import { AppShell, Navbar, Header, Text, Burger, MediaQuery, Box } from '@mantine/core';
 import { useState } from 'react'
 import Darkmode from '../Darkmode';
+import LoginBtn from '../login/loginbtn';
 import { SearchBar } from '../SearchBar/SearchBar';
 import MainLinks from './mainlinks';
 
@@ -32,6 +33,7 @@ const Layout = ({ children }) => {
           style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}
         >
           <SearchBar />
+          <LoginBtn />
           <Darkmode />
         </Box>
       </Header>

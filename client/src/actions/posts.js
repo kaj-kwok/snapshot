@@ -12,6 +12,7 @@ export const createNewPost = (post) => async (dispatch) => {
 
 export const fetchAllPosts = () => async (dispatch) => {
   try {
+    console.log("strat")
     const { data } = await getAllPosts()
     dispatch(fetch_all(data))
   } catch (error) {
@@ -47,9 +48,15 @@ export const fetchTags = () => async (dispatch) => {
 }
 
 export const searchByTag = (tags) => async (dispatch) => {
+  console.log("tags", tags)
   try {
-    const { data } = await searchTags(tags)
-    dispatch(fetchBySearch(data))
+    if (tags !== '') {
+      const { data } = await searchTags(tags)
+      dispatch(fetchBySearch(data))
+    } else {
+      console.log("triggereed")
+      dispatch(fetchAllPosts())
+    }
   } catch (error) {
     console.log(error);
   }
