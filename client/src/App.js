@@ -6,7 +6,7 @@ import Application from './Components/Application'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePost from './routes/createpost';
 import Home from './Components/Home'
-import Posts from './Components/Posts';
+import MyPosts from './Components/MyPosts';
 import Search from './Components/Search';
 import Login from './Components/login/login'
 import AuthRoute from './routes/protected';
@@ -30,7 +30,7 @@ function App() {
                 <Route path="/" element={<Application />} >
                   <Route index element={<Home />} />
                   <Route element={<AuthRoute />} >
-                    <Route path="posts" element={<Posts />} />
+                    <Route path="posts" element={<MyPosts />} />
                     <Route path="createpost/" element={<CreatePost />} />
                     <Route path="editpost/:slug" element={<CreatePost />} />
                   </Route>

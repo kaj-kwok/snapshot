@@ -1,10 +1,12 @@
 import { Container } from "@mantine/core";
 import { fetchAllPosts } from "../actions/posts";
 import { useEffect } from 'react'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Posts from "./posts/posts";
 
 const Home = () => {
+  const posts = useSelector(state => state.posts)
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchAllPosts())
@@ -12,7 +14,7 @@ const Home = () => {
 
   return (
     <Container>
-      <Posts />
+      <Posts posts={posts} />
     </Container>
   )
 }

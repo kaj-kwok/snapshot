@@ -1,10 +1,7 @@
 import { SimpleGrid, Loader, Box } from "@mantine/core";
 import Post from './post'
-import { useSelector } from 'react-redux'
 
-
-const Posts = () => {
-  const posts = useSelector(state => state.posts)
+const Posts = ({ posts }) => {
 
   return (
     !posts.length ? <Loader /> : (

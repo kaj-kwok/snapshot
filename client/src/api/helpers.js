@@ -32,9 +32,9 @@ const API = axios.create({
 
 export const getAllPosts = () => API.get(`${url}/posts`)
 export const createPost = (newPost) => API.post(`${url}/posts`, newPost)
-export const editPost = (id, updatedPost) => axios.patch(`${url}/posts/${id}`, updatedPost)
-export const deletedPost = (id) => axios.delete(`${url}/posts/${id}`)
-export const getTags = () => axios.get(`${url}/posts/tags`)
-export const searchTags = (tags) => axios.get(`${url}/posts/search?tags=${tags}`)
+export const editPost = (id, updatedPost) => API.patch(`${url}/posts/${id}`, updatedPost)
+export const deletedPost = (id) => API.delete(`${url}/posts/${id}`)
+export const getTags = () => API.get(`${url}/posts/tags`)
+export const searchTags = (tags) => API.get(`${url}/posts/search?tags=${tags}`)
 
 export const userLogin = (user) => axios.post(`${url}/auth/login`, user)
