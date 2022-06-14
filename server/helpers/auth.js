@@ -20,6 +20,10 @@ export const userLogin = async (req, res) => {
       }, process.env.TOKEN_KEY)
       const returnedUser = { id: user._id, name: user.name, token: token }
       res.status(200).json(returnedUser)
+    } else {
+      res.status(404).json({
+        message: "Login failed"
+      })
     }
   } catch (error) {
     res.json(error)

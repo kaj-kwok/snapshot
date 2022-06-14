@@ -20,7 +20,7 @@ const useStyle: CSSObject = {
 }
 
 const CreatePost = () => {
-  const user = useSelector(state => state.user)
+  const user = useSelector(state => state.users)
   const theme = useMantineTheme();
   const { slug } = useParams()
   const post = useSelector((state) => (slug ? state.posts.find((message) => message._id === slug) : null));
@@ -29,7 +29,8 @@ const CreatePost = () => {
   const [file, setFile] = useState('')
   const form = useForm({
     initialValues: {
-      creator: user.id,
+      user_id: user.id,
+      creator: user.name,
       title: '',
       description: '',
       tags: [],
@@ -51,8 +52,9 @@ const CreatePost = () => {
       const post = { ...values, uploadedFile: file, tags: tags }
       dispatch(updatePost(slug, post))
     } else {
-      const tags = values.tags.split(',').trim()
-      const post = { ...values, uploadedFile: file, tags: tags }
+      const tags = values.tags.split(',')
+      const trimmedTags = tags.map(e => e.trim())
+      const post = { ...values, uploadedFile: file, tags: trimmedTags }
       dispatch(createNewPost(post))
     }
     handleClearForm()
@@ -67,12 +69,6 @@ const CreatePost = () => {
   return (
     <Box sx={{ maxWidth: 300 }} mx="auto">
       <form onSubmit={form.onSubmit(handleSubmitForm)}>
-        <TextInput
-          required
-          label="Creator"
-          placeholder="Creator"
-          {...form.getInputProps('creator')}
-        />
         <TextInput
           required
           label="Title"
