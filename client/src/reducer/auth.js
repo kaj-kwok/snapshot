@@ -10,7 +10,7 @@ const userReducer = createSlice({
       return action.payload
     },
     logoutUser: (state, action) => {
-      //do something
+      return null;
     }
   }
 })

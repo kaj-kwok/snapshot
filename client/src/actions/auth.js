@@ -1,5 +1,5 @@
 import { userLogin } from "../api/helpers";
-import { loginUser } from "../reducer/auth";
+import { loginUser, logoutUser } from "../reducer/auth";
 
 export const LoginUser = (user, navigate) => async (dispatch) => {
   try {
@@ -9,4 +9,8 @@ export const LoginUser = (user, navigate) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+}
+
+export const LogOut = () => async (dispatch) => {
+  dispatch(logoutUser())
 }
