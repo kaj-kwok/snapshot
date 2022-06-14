@@ -31,8 +31,13 @@ const Layout = ({ children }) => {
               mr="xl"
             />
           </MediaQuery>
-
-          <Text>Create Memories</Text>
+          <Box>
+            <Text component='h1' style={{ fontSize: "1.5rem" }}>Memories</Text>
+            <Text
+              style={{ fontSize: "0.75em", fontStyle: 'italic' }}
+            >
+              {user && ` by ${user.name}`}</Text>
+          </Box>
         </div>
         <Box
           style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}

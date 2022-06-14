@@ -17,7 +17,11 @@ export const userLogin = async (req, res) => {
       const token = jwt.sign({
         user_id: user._id,
         name: user.name
-      }, process.env.TOKEN_KEY)
+      },
+        process.env.TOKEN_KEY,
+        {
+          expiresIn: "1h",
+        })
       const returnedUser = { id: user._id, name: user.name, token: token }
       res.status(200).json(returnedUser)
     } else {
@@ -57,7 +61,9 @@ export const userRegister = async (req, res) => {
       const token = jwt.sign({
         user_id: user._id,
         name: user.name
-      }, process.env.TOKEN_KEY)
+      }, process.env.TOKEN_KEY, {
+        expiresIn: "1h",
+      })
       console.log("token", token);
       const returnedUser = { id: user._id, name: user.name, token: token }
       console.log("returned user", returnedUser);

@@ -58,7 +58,7 @@ const CreatePost = () => {
       dispatch(createNewPost(post))
     }
     handleClearForm()
-    navigate("/")
+    navigate("/posts")
   }
 
   const handleClearForm = () => {
