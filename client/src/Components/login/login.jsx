@@ -1,7 +1,13 @@
 import { useForm } from "@mantine/form";
 import { TextInput, Button, Group, Box, PasswordInput } from '@mantine/core';
+import { LoginUser } from "../../actions/auth";
+import { useDispatch } from 'react-redux'
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 const Login = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const form = useForm({
     initialValues: {
       email: '',
@@ -15,9 +21,19 @@ const Login = () => {
         value !== values.password ? 'Passwords did not match' : null,
     },
   });
+
+  const handleSubmit = (values) => {
+    const user = {
+      username: values.email,
+      password: values.password
+    }
+    console.log(user);
+    dispatch(LoginUser(user, navigate))
+  }
+
   return (
     <Box sx={{ maxWidth: 300 }} mx="auto" my="auto">
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <TextInput
           required
           label="Email"
@@ -38,7 +54,7 @@ const Login = () => {
         />
 
         <Group position="right" mt="md">
-          <Button type="submit">Submit</Button>
+          <Button type="submit" variant='gradient'>Submit</Button>
         </Group>
       </form>
     </Box>

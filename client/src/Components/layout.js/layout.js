@@ -2,11 +2,16 @@ import { AppShell, Navbar, Header, Text, Burger, MediaQuery, Box } from '@mantin
 import { useState } from 'react'
 import Darkmode from '../Darkmode';
 import LoginBtn from '../login/loginbtn';
+import LogoutBtn from '../login/logoutbtn';
 import { SearchBar } from '../SearchBar/SearchBar';
 import MainLinks from './mainlinks';
+import { useSelector } from 'react-redux';
 
 const Layout = ({ children }) => {
   const [opened, setOpened] = useState(false);
+  const user = useSelector(state => state.users)
+  console.log(user);
+
   return (
     <AppShell
       navbarOffsetBreakpoint="sm"
@@ -33,7 +38,7 @@ const Layout = ({ children }) => {
           style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}
         >
           <SearchBar />
-          <LoginBtn />
+          {(Object.keys(user).length === 0) ? <LoginBtn /> : <LogoutBtn />}
           <Darkmode />
         </Box>
       </Header>

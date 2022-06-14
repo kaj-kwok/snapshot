@@ -17,7 +17,11 @@ function App() {
 
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-      <MantineProvider theme={{ ...theme, colorScheme }} withGlobalStyles withNormalizeCSS>
+      <MantineProvider
+        theme={{ ...theme, colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
         <BrowserRouter>
           <Layout>
             <div className="App">

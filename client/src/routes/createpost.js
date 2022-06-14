@@ -107,7 +107,7 @@ const CreatePost = () => {
           {(status) => dropzoneChildren(status, theme)}
         </Dropzone>
         <Group position="right" mt="md">
-          <Button type="submit">Create Post</Button>
+          <Button type="submit" variant='gradient'>Create Post</Button>
         </Group>
       </form>
     </Box>

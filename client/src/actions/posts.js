@@ -1,5 +1,5 @@
-import { create, fetch_all, edit, delete_Post, fetchBySearch } from "../reducer/posts"
-import { createPost, getAllPosts, editPost, deletedPost, getTags, searchTags } from "../api/helpers"
+import { create, fetch_all, edit, delete_Post, fetchBySearch, fetchMyPosts } from "../reducer/posts"
+import { createPost, getAllPosts, editPost, deletedPost, getTags, searchTags, fetchUserPosts } from "../api/helpers"
 
 export const createNewPost = (post) => async (dispatch) => {
   try {
@@ -12,7 +12,6 @@ export const createNewPost = (post) => async (dispatch) => {
 
 export const fetchAllPosts = () => async (dispatch) => {
   try {
-    console.log("strat")
     const { data } = await getAllPosts()
     dispatch(fetch_all(data))
   } catch (error) {
@@ -48,15 +47,22 @@ export const fetchTags = () => async (dispatch) => {
 }
 
 export const searchByTag = (tags) => async (dispatch) => {
-  console.log("tags", tags)
   try {
     if (tags !== '') {
       const { data } = await searchTags(tags)
       dispatch(fetchBySearch(data))
     } else {
-      console.log("triggereed")
       dispatch(fetchAllPosts())
     }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const fetchAllMyPosts = (userid) => async (dispatch) => {
+  try {
+    const { data } = await fetchUserPosts(userid)
+    dispatch(fetchMyPosts(data))
   } catch (error) {
     console.log(error);
   }

@@ -2,6 +2,7 @@
 
 const myTheme = {
   fontFamily: "Montserrat, sans-serif",
+
 };
 
 export default myTheme
