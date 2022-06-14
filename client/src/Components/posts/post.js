@@ -11,6 +11,10 @@ import { deletePost } from "../../actions/posts";
 const Post = ({ post }) => {
   const dispatch = useDispatch()
 
+  const handleDeletePost = () => {
+    dispatch(deletePost(post._id))
+  }
+
   return (
     <Card shadow="sm" p="lg" sx={{
       '&:hover': {
@@ -108,9 +112,7 @@ const Post = ({ post }) => {
                 color: "#4267B2"
               }
             }}
-            onClick={() => {
-              dispatch(deletePost(post._id))
-            }}
+            onClick={handleDeletePost}
           ><IconTrash /></UnstyledButton>
         </Group>
       </CardSection>

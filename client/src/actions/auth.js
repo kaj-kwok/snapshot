@@ -7,7 +7,7 @@ export const LoginUser = (user, navigate) => async (dispatch) => {
     dispatch(loginUser(data))
     navigate('/posts')
   } catch (error) {
-    console.log(error);
+    console.log(error.response.data);
   }
 }
 

@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 const Layout = ({ children }) => {
   const [opened, setOpened] = useState(false);
-  const user = useSelector(state => state.users)
+  const user = useSelector(state => state.users.user)
   console.log(user);
 
   return (
