@@ -9,6 +9,7 @@ import Home from './Components/Home'
 import Posts from './Components/Posts';
 import Search from './Components/Search';
 import Login from './Components/login/login'
+import AuthRoute from './routes/protected';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('dark');
@@ -28,9 +29,11 @@ function App() {
               <Routes>
                 <Route path="/" element={<Application />} >
                   <Route index element={<Home />} />
-                  <Route path="posts" element={<Posts />} />
-                  <Route path="createpost/" element={<CreatePost />} />
-                  <Route path="editpost/:slug" element={<CreatePost />} />
+                  <Route element={<AuthRoute />} >
+                    <Route path="posts" element={<Posts />} />
+                    <Route path="createpost/" element={<CreatePost />} />
+                    <Route path="editpost/:slug" element={<CreatePost />} />
+                  </Route>
                   <Route path="search" element={<Search />} />
                   <Route path="login" element={<Login />} />
                   <Route path="*" element={<p>Oops page not found</p>} />

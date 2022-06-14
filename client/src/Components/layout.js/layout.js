@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
           style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}
         >
           <SearchBar />
-          {(Object.keys(user).length === 0) ? <LoginBtn /> : <LogoutBtn />}
+          {!user ? <LoginBtn /> : <LogoutBtn />}
           <Darkmode />
         </Box>
       </Header>

@@ -20,6 +20,7 @@ const useStyle: CSSObject = {
 }
 
 const CreatePost = () => {
+  const user = useSelector(state => state.user)
   const theme = useMantineTheme();
   const { slug } = useParams()
   const post = useSelector((state) => (slug ? state.posts.find((message) => message._id === slug) : null));
@@ -28,7 +29,7 @@ const CreatePost = () => {
   const [file, setFile] = useState('')
   const form = useForm({
     initialValues: {
-      creator: '',
+      creator: user.id,
       title: '',
       description: '',
       tags: [],
