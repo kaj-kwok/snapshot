@@ -1,18 +1,23 @@
 import { Card, Image, Text, Group, Badge, CardSection, Button, UnstyledButton } from "@mantine/core";
 import fileNotFound from '../../assets/filenotfound.png'
 import moment from 'moment';
-import { IconThumbUp } from '@tabler/icons';
 import { IconTrash } from '@tabler/icons';
 import { IconDots } from '@tabler/icons';
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { deletePost } from "../../actions/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePost, likePost } from "../../actions/posts";
+import Like from "./like";
 
 const Post = ({ post }) => {
   const dispatch = useDispatch()
-
+  const user = useSelector(state => state.users.user)
   const handleDeletePost = () => {
     dispatch(deletePost(post._id))
+  }
+
+  const handleLikePost = () => {
+    console.log("user.id", user.id, "post._id", post._id);
+    dispatch(likePost(user?.id, post._id))
   }
 
   return (
@@ -95,25 +100,26 @@ const Post = ({ post }) => {
             width: '100%',
             paddingLeft: "10px",
             paddingRight: "10px",
-            paddingBottom: "10px"
+            paddingBottom: "10px",
+            minHeight: "30px"
           }}
         >
-          <UnstyledButton
-            sx={{
-              '&:hover': {
-                color: "#4267B2"
-              }
-            }}
-            onClick={() => console.log("clicked like")}
-          ><IconThumbUp /></UnstyledButton>
-          <UnstyledButton
-            sx={{
-              '&:hover': {
-                color: "#4267B2"
-              }
-            }}
-            onClick={handleDeletePost}
-          ><IconTrash /></UnstyledButton>
+          {user?.id && (
+            <UnstyledButton onClick={handleLikePost}>
+              <Like component="button" likes={post.likesCounter} />
+            </UnstyledButton>
+          )}
+          {user?.id === post.user_id &&
+            <UnstyledButton
+              sx={{
+                '&:hover': {
+                  color: "#4267B2"
+                }
+              }}
+              onClick={handleDeletePost}
+            ><IconTrash />
+            </UnstyledButton>
+          }
         </Group>
       </CardSection>
     </Card >

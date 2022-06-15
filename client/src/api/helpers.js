@@ -6,7 +6,7 @@ const url = "http://localhost:5000"
 store.subscribe(listener)
 
 function select(state) {
-  return state.users?.token
+  return state.users?.user.token
 }
 
 function listener() {
@@ -36,5 +36,6 @@ export const editPost = (id, updatedPost) => API.patch(`${url}/posts/${id}`, upd
 export const deletedPost = (id) => API.delete(`${url}/posts/${id}`)
 export const getTags = () => API.get(`${url}/posts/tags`)
 export const searchTags = (tags) => API.get(`${url}/posts/search?tags=${tags}`)
+export const likedPost = (user_id, post_id) => API.patch(`${url}/posts/${post_id}/liked`, { user_id, post_id })
 
 export const userLogin = (user) => axios.post(`${url}/auth/login`, user)

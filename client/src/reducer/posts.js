@@ -24,9 +24,12 @@ const postReducer = createSlice({
     },
     fetchMyPosts: (state, action) => {
       return action.payload
+    },
+    likedPost: (state, action) => {
+
     }
   }
 })
 
-export const { create, fetch_all, edit, delete_Post, fetchBySearch, fetchMyPosts } = postReducer.actions
+export const { create, fetch_all, edit, delete_Post, fetchBySearch, fetchMyPosts, likedPost } = postReducer.actions
 export default postReducer.reducer

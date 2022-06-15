@@ -65,3 +65,8 @@ export const searchByTag = async (req, res) => {
     console.log(error);
   }
 }
+
+export const likePost = async (req, res) => {
+  const { user_id, post_id } = req.body
+  console.log("user_id, post_id", user_id, post_id);
+}

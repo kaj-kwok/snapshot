@@ -34,22 +34,8 @@ export const dropzoneChildren = (status, theme) => (
         Drag images here or click to select files
       </Text>
       <Text size="sm" color="dimmed" inline mt={7}>
-        Attach as many files as you like, each file should not exceed 5mb
+        Attach file to upload, file should not exceed 5mb
       </Text>
     </div>
   </Group >
 );
-
-// function Demo() {
-//   const theme = useMantineTheme();
-//   return (
-//     <Dropzone
-//       onDrop={(files) => console.log('accepted files', files)}
-//       onReject={(files) => console.log('rejected files', files)}
-//       maxSize={3 * 1024 ** 2}
-//       accept={IMAGE_MIME_TYPE}
-//     >
-//       {(status) => dropzoneChildren(status, theme)}
-//     </Dropzone>
-//   );
-// }

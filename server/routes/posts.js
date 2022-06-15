@@ -1,5 +1,5 @@
 import express from "express"
-import { createPost, getAllPosts, editPost, deletePost, getTags, searchByTag } from "../helpers/posts.js"
+import { createPost, getAllPosts, editPost, deletePost, getTags, searchByTag, likePost } from "../helpers/posts.js"
 import { checkAuth } from "../middleware/auth.js"
 
 const router = express.Router()
@@ -15,5 +15,7 @@ router.delete('/:id', checkAuth, deletePost)
 router.get('/tags', getTags)
 
 router.get('/search', searchByTag)
+
+router.patch('/:id/liked', likePost)
 
 export default router;

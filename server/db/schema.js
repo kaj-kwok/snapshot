@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema(
     tags: [String],
     uploadedFile: String,
     likesCounter: {
-      type: Number,
+      type: [String],
       default: 0
     }
   },
