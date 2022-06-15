@@ -10,13 +10,19 @@ const userReducer = createSlice({
   initialState,
   reducers: {
     loginUser: (state, action) => {
-      return action.payload
+      state.user = action.payload
     },
     logoutUser: (state, action) => {
-      return null;
+      state.user = null
+    },
+    loginError: (state, action) => {
+      state.error = action.payload
+    },
+    resetLoginError: (state, action) => {
+      state.error = null
     }
   }
 })
 
-export const { loginUser, logoutUser } = userReducer.actions
+export const { loginUser, logoutUser, loginError, resetLoginError } = userReducer.actions
 export default userReducer.reducer
