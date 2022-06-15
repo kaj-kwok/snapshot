@@ -67,6 +67,13 @@ export const searchByTag = async (req, res) => {
 }
 
 export const likePost = async (req, res) => {
-  const { user_id, post_id } = req.body
-  console.log("user_id, post_id", user_id, post_id);
+  const { userid, postid } = req.body
+  console.log("user_id, post_id", userid, postid);
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(postid, { $push: { likesCounter: userid } }, { new: true })
+    res.status(201).json(updatedPost)
+  } catch (error) {
+    console.log(error);
+  }
+
 }

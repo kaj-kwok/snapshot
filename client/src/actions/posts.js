@@ -1,4 +1,4 @@
-import { create, fetch_all, edit, delete_Post, fetchBySearch } from "../reducer/posts"
+import { create, fetch_all, edit, delete_Post, fetchBySearch, updateLikes } from "../reducer/posts"
 import { createPost, getAllPosts, editPost, deletedPost, getTags, searchTags, likedPost } from "../api/helpers"
 
 export const createNewPost = (post) => async (dispatch) => {
@@ -62,7 +62,7 @@ export const searchByTag = (tags) => async (dispatch) => {
 export const likePost = (user_id, post_id) => async (dispatch) => {
   try {
     const { data } = await likedPost(user_id, post_id)
-
+    dispatch(updateLikes(data))
   } catch (error) {
     console.log(error);
   }

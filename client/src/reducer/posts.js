@@ -14,7 +14,7 @@ const postReducer = createSlice({
       return action.payload
     },
     edit: (state, action) => {
-      return state.map((post) => (post._id === action.payload ? action.payload : post))
+      return state.map((post) => (post._id === action.payload._id ? action.payload : post))
     },
     delete_Post: (state, action) => {
       return state.filter((post) => (post._id !== action.payload))
@@ -25,11 +25,11 @@ const postReducer = createSlice({
     fetchMyPosts: (state, action) => {
       return action.payload
     },
-    likedPost: (state, action) => {
-
+    updateLikes: (state, action) => {
+      return state.map((post) => (post._id === action.payload._id ? action.payload : post))
     }
   }
 })
 
-export const { create, fetch_all, edit, delete_Post, fetchBySearch, fetchMyPosts, likedPost } = postReducer.actions
+export const { create, fetch_all, edit, delete_Post, fetchBySearch, fetchMyPosts, updateLikes } = postReducer.actions
 export default postReducer.reducer
