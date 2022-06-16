@@ -20,7 +20,7 @@ const useStyle: CSSObject = {
 }
 
 const CreatePost = () => {
-  const user = useSelector(state => state.users)
+  const user = useSelector(state => state.users.user)
   const theme = useMantineTheme();
   const { slug } = useParams()
   const post = useSelector((state) => (slug ? state.posts.find((message) => message._id === slug) : null));

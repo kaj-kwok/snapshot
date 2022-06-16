@@ -105,8 +105,8 @@ const Post = ({ post }) => {
           }}
         >
           {user?.id && (
-            <UnstyledButton onClick={handleLikePost}>
-              <Like component="button" likes={post.likesCounter} />
+            <UnstyledButton onClick={handleLikePost} >
+              <Like likes={post.likesCounter} />
             </UnstyledButton>
           )}
           {user?.id === post.user_id &&

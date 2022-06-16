@@ -10,7 +10,6 @@ const postSchema = new mongoose.Schema(
     uploadedFile: String,
     likesCounter: {
       type: [String],
-      default: 0
     }
   },
   { timestamps: true }
