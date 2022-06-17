@@ -68,21 +68,17 @@ export const searchByTag = async (req, res) => {
 
 export const likePost = async (req, res) => {
   const { userid, postid } = req.body
-  console.log("user_id, post_id", userid, postid);
-
   const post = await Post.findById(postid)
-  console.log("post is", post);
   const index = post.likesCounter.findIndex(id => id === String(userid))
-  console.log("index is ", index);
 
+  //if user does not exists on like array, add user id
   if (index === -1) {
     post.likesCounter.push(userid)
-    console.log("new object is ", post);
   } else {
     post.likesCounter = post.likesCounter.filter(user => user !== String(userid))
   }
-  console.log("filtered object is ", post);
 
+  //update post in db with new updated post
   try {
     const updatedPost = await Post.findByIdAndUpdate(postid, post, { new: true })
     res.status(201).json(updatedPost)

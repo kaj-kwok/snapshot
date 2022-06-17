@@ -1,26 +1,18 @@
 import { UnstyledButton } from '@mantine/core';
 import { IconThumbUp } from '@tabler/icons';
 
-const Like = ({ likes }) => {
+const Like = ({ likes, user }) => {
   console.log(likes);
   if (likes.length > 0)
     return (
-      <IconThumbUp style={{ color: "#4267B2" }} />
+      (likes.filter(id => id === user.id)) && <IconThumbUp style={{ color: "#4267B2" }} />
     )
+  else {
+    return (
 
-  return (
-    <>
-      <UnstyledButton
-        sx={{
-          '&:hover': {
-            color: "#4267B2"
-          }
-        }}
-      >
-        <IconThumbUp />
-      </UnstyledButton>
-    </>
-  )
+      <IconThumbUp />
+    )
+  }
 }
 
 export default Like

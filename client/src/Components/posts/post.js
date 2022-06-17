@@ -104,11 +104,16 @@ const Post = ({ post }) => {
             minHeight: "30px"
           }}
         >
-          {user?.id && (
-            <UnstyledButton onClick={handleLikePost} >
-              <Like likes={post.likesCounter} />
+          {user?.id &&
+            <UnstyledButton onClick={handleLikePost}
+              sx={{
+                '&:hover': {
+                  color: "#4267B2"
+                }
+              }}>
+              <Like likes={post.likesCounter} user={user.id} />
             </UnstyledButton>
-          )}
+          }
           {user?.id === post.user_id &&
             <UnstyledButton
               sx={{
