@@ -71,13 +71,17 @@ export const likePost = async (req, res) => {
   console.log("user_id, post_id", userid, postid);
 
   const post = await Post.findById(postid)
+  console.log("post is", post);
   const index = post.likesCounter.findIndex(id => id === String(userid))
+  console.log("index is ", index);
 
   if (index === -1) {
     post.likesCounter.push(userid)
+    console.log("new object is ", post);
   } else {
-    post.likesCounter.filter(user => user !== String(userid))
+    post.likesCounter = post.likesCounter.filter(user => user !== String(userid))
   }
+  console.log("filtered object is ", post);
 
   try {
     const updatedPost = await Post.findByIdAndUpdate(postid, post, { new: true })
