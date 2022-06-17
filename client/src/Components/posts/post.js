@@ -32,7 +32,7 @@ const Post = ({ post }) => {
       style={{ position: "relative" }}>
       <Card.Section style={{ position: "relative" }}>
         <Image src={post.uploadedFile || fileNotFound} height={250} width="100%" fit="contain" />
-        <Link to={`/editpost/${post._id}`}>
+        {user?.id === post.user_id && <Link to={`/editpost/${post._id}`}>
           <UnstyledButton
             sx={{
               '&:hover': {
@@ -46,7 +46,7 @@ const Post = ({ post }) => {
             }}
           >
             <IconDots /></UnstyledButton>
-        </Link>
+        </Link>}
         <Group
           id="textbox"
           sx={{
