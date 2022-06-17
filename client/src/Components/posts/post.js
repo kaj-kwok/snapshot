@@ -93,7 +93,7 @@ const Post = ({ post }) => {
       <CardSection>
         <Group
           style={{
-            alignItems: "end",
+            alignItems: "center",
             justifyContent: "space-between",
             marginTop: "10px",
             bottom: 0,
@@ -110,7 +110,9 @@ const Post = ({ post }) => {
                 '&:hover': {
                   color: "#4267B2"
                 }
-              }}>
+              }}
+              style={{ display: "flex", alignItems: "center", gap: "0.5em" }}
+            >
               <Like likes={post.likesCounter} user={user.id} />
             </UnstyledButton>
           }
