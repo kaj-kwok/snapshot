@@ -6,7 +6,7 @@ const url = "http://localhost:5000"
 store.subscribe(listener)
 
 function select(state) {
-  return state.users?.user.token
+  return state.users.user?.token
 }
 
 function listener() {
@@ -17,18 +17,6 @@ function listener() {
 const API = axios.create({
   baseURL: url,
 })
-
-// const token = store.dispatch(getToken())
-// const API = axios.create({
-//   baseURL: url
-// })
-
-// API.interceptors.request.use(req => {
-//   if (token) {
-//     req.headers.Authorization = `Bearer ${token}`
-
-//   }
-// })
 
 export const getAllPosts = () => API.get(`${url}/posts`)
 export const createPost = (newPost) => API.post(`${url}/posts`, newPost)

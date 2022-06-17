@@ -8,11 +8,6 @@ export const userLogin = async (req, res) => {
   const { username, password } = req.body
   try {
     const user = await User.findOne({ username: username })
-    // if (!user) {
-    //   res.status(404).json({
-    //     message: "Login failed"
-    //   })
-    // }
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = jwt.sign({
         user_id: user._id,
