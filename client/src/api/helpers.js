@@ -19,6 +19,7 @@ const API = axios.create({
 })
 
 export const getAllPosts = () => API.get(`${url}/posts`)
+export const getThisPost = (id) => API.get(`${url}/posts/${id}`)
 export const createPost = (newPost) => API.post(`${url}/posts`, newPost)
 export const editPost = (id, updatedPost) => API.patch(`${url}/posts/${id}`, updatedPost)
 export const deletedPost = (id) => API.delete(`${url}/posts/${id}`)

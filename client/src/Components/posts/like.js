@@ -2,7 +2,6 @@ import { Text, Box } from '@mantine/core';
 import { IconThumbUp } from '@tabler/icons';
 
 const Like = ({ likes, user }) => {
-  console.log(likes);
   if (likes.length > 0)
     return (
       <>

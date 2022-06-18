@@ -10,6 +10,7 @@ import MyPosts from './Components/MyPosts';
 import Search from './Components/Search';
 import Login from './Components/login/login'
 import AuthRoute from './routes/protected';
+import DetailedPost from './Components/detailedpost/DetailedPost';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('dark');
@@ -34,6 +35,7 @@ function App() {
                     <Route path="createpost/" element={<CreatePost />} />
                     <Route path="editpost/:slug" element={<CreatePost />} />
                   </Route>
+                  <Route path="posts/:slug" element={<DetailedPost />}></Route>
                   <Route path="search" element={<Search />} />
                   <Route path="login" element={<Login />} />
                   <Route path="*" element={<p>Oops page not found</p>} />

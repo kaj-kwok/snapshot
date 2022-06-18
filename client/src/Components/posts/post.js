@@ -3,12 +3,13 @@ import fileNotFound from '../../assets/filenotfound.png'
 import moment from 'moment';
 import { IconTrash } from '@tabler/icons';
 import { IconDots } from '@tabler/icons';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, likePost } from "../../actions/posts";
 import Like from "./like";
 
 const Post = ({ post }) => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const user = useSelector(state => state.users.user)
   const handleDeletePost = () => {
@@ -20,6 +21,10 @@ const Post = ({ post }) => {
     dispatch(likePost(user?.id, post._id))
   }
 
+  const handleDetailedPost = () => {
+    navigate(`/posts/${post._id}`, { replace: true })
+  }
+
   return (
     <Card shadow="sm" p="lg" sx={{
       '&:hover': {
@@ -29,7 +34,9 @@ const Post = ({ post }) => {
         }
       }
     }}
-      style={{ position: "relative" }}>
+      style={{ position: "relative" }}
+      onClick={handleDetailedPost}
+    >
       <Card.Section style={{ position: "relative" }}>
         <Image src={post.uploadedFile || fileNotFound} height={250} width="100%" fit="contain" />
         {user?.id === post.user_id && <Link to={`/editpost/${post._id}`}>

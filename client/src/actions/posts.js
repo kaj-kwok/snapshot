@@ -1,5 +1,5 @@
 import { create, fetch_all, edit, delete_Post, fetchBySearch, updateLikes } from "../reducer/posts"
-import { createPost, getAllPosts, editPost, deletedPost, getTags, searchTags, likedPost } from "../api/helpers"
+import { createPost, getThisPost, getAllPosts, editPost, deletedPost, getTags, searchTags, likedPost } from "../api/helpers"
 
 export const createNewPost = (post) => async (dispatch) => {
   try {
@@ -16,6 +16,15 @@ export const fetchAllPosts = () => async (dispatch) => {
     dispatch(fetch_all(data))
   } catch (error) {
     console.log(error)
+  }
+}
+
+export const getPost = (id) => async (dispatch) => {
+  try {
+    const { data } = await getThisPost(id)
+    console.log(data);
+  } catch (error) {
+    console.log(error);
   }
 }
 
