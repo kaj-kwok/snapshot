@@ -10,9 +10,10 @@ export const getAllPosts = async (req, res) => {
   }
 }
 
-export const getThisPosts = async (req, res) => {
+export const getThisPost = async (req, res) => {
   try {
     const thisPost = await Post.findById(req.params.id)
+    console.log(thisPost);
     res.status(200).json(thisPost)
   } catch (error) {
     console.log(error);

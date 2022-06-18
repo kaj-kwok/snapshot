@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = []
+const initialState = {
+  posts: [],
+  post: [],
+}
+
 
 const postReducer = createSlice({
   name: 'posts',
@@ -8,10 +12,10 @@ const postReducer = createSlice({
   reducers: {
     create: (state, action) => {
       const post = action.payload
-      state.push(post)
+      state.posts.push(post)
     },
     fetch_all: (state, action) => {
-      return action.payload
+      return { ...state, posts: action.payload }
     },
     edit: (state, action) => {
       return state.map((post) => (post._id === action.payload._id ? action.payload : post))
@@ -27,9 +31,13 @@ const postReducer = createSlice({
     },
     updateLikes: (state, action) => {
       return state.map((post) => (post._id === action.payload._id ? action.payload : post))
+    },
+    fetchPost: (state, action) => {
+      const post = action.payload
+      return { ...state, post: post }
     }
   }
 })
 
-export const { create, fetch_all, edit, delete_Post, fetchBySearch, fetchMyPosts, updateLikes } = postReducer.actions
+export const { create, fetch_all, edit, delete_Post, fetchBySearch, fetchMyPosts, updateLikes, fetchPost } = postReducer.actions
 export default postReducer.reducer

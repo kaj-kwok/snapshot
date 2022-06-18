@@ -1,12 +1,12 @@
 import express from "express"
-import { getThisPosts, createPost, getAllPosts, editPost, deletePost, getTags, searchByTag, likePost } from "../helpers/posts.js"
+import { getThisPost, createPost, getAllPosts, editPost, deletePost, getTags, searchByTag, likePost } from "../helpers/posts.js"
 import { checkAuth } from "../middleware/auth.js"
 
 const router = express.Router()
 
 router.get('/', getAllPosts)
 
-router.get('/:id', getThisPosts)
+router.get('/:id', getThisPost)
 
 router.post('/', checkAuth, createPost)
 
