@@ -1,5 +1,5 @@
-import { userLogin } from "../api/helpers";
-import { loginUser, logoutUser, loginError, resetLoginError } from "../reducer/auth";
+import { userLogin, sendUser } from "../api/helpers";
+import { loginUser, logoutUser, loginError, resetLoginError, register } from "../reducer/auth";
 
 export const LoginUser = (user, navigate) => async (dispatch) => {
   try {
@@ -11,6 +11,15 @@ export const LoginUser = (user, navigate) => async (dispatch) => {
     setTimeout(() => {
       dispatch(resetLoginError())
     }, 5000)
+  }
+}
+
+export const registerUser = (values) => async (dispatch) => {
+  try {
+    const { data } = await sendUser(values)
+    dispatch(register(data))
+  } catch (error) {
+    console.log(error);
   }
 }
 

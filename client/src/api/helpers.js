@@ -28,3 +28,4 @@ export const searchTags = (tags) => API.get(`${url}/posts/search?tags=${tags}`)
 export const likedPost = (userid, postid) => API.patch(`${url}/posts/${postid}/liked`, { userid, postid })
 
 export const userLogin = (user) => axios.post(`${url}/auth/login`, user)
+export const sendUser = (user) => axios.post(`${url}/auth/register`, user)

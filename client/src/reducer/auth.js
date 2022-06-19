@@ -20,9 +20,12 @@ const userReducer = createSlice({
     },
     resetLoginError: (state, action) => {
       state.error = null
+    },
+    register: (state, action) => {
+
     }
   }
 })
 
-export const { loginUser, logoutUser, loginError, resetLoginError } = userReducer.actions
+export const { loginUser, logoutUser, loginError, resetLoginError, register } = userReducer.actions
 export default userReducer.reducer

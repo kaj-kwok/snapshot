@@ -1,5 +1,5 @@
 import { useForm } from "@mantine/form";
-import { TextInput, Button, Group, Box, PasswordInput, Anchor } from '@mantine/core';
+import { TextInput, Button, Group, Box, PasswordInput, Anchor, Container, Title } from '@mantine/core';
 import { LoginUser } from "../../actions/auth";
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
@@ -34,10 +34,9 @@ const Login = () => {
   }
 
   return (
-    <>
-      <Box sx={{ maxWidth: 300 }} style={{
-        marginTop: "20%"
-      }} mx="auto" my="auto">
+    <Container fluid={true} style={{ display: 'flex', flexDirection: 'column', position: 'relative', alignItems: 'center' }}>
+      <Title order={2} style={{ position: 'absolute', left: 0, top: 0 }}>Login to Account</Title>
+      <Box sx={{ minWidth: 300, marginTop: "15%" }}>
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           <TextInput
             required
@@ -71,7 +70,7 @@ const Login = () => {
       >
         {error && <Error >{error.message}</Error>}
       </Box>
-    </>
+    </Container>
   )
 }
 
