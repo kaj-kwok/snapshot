@@ -29,7 +29,7 @@ const Login = () => {
       username: values.email,
       password: values.password
     }
-    console.log(user);
+    form.reset()
     dispatch(LoginUser(user, navigate))
   }
 

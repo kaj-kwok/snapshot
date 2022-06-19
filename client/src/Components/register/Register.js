@@ -1,9 +1,13 @@
 import { TextInput, PasswordInput, Button, Group, Box, Title, Container } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../actions/auth';
+import Error from '../notifications/error';
 
 const Register = () => {
+  const error = useSelector(state => state.users.error)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const form = useForm({
     initialValues: {
@@ -26,13 +30,14 @@ const Register = () => {
       name: values.name,
       password: values.password
     }
-    dispatch(registerUser(user))
+    form.reset()
+    dispatch(registerUser(user, navigate))
   }
 
   return (
-    <Container fluid={true} style={{ display: 'flex', position: 'relative' }}>
+    <Container fluid={true} style={{ display: 'flex', flexDirection: 'column', position: 'relative', alignItems: 'center' }}>
       <Title order={2} style={{ position: 'absolute', left: 0, top: 0 }}>Create an Account</Title>
-      <Box sx={{ minWidth: 300, marginTop: "15%" }} mx="auto">
+      <Box sx={{ minWidth: 300, marginTop: "15%" }}>
         <form onSubmit={form.onSubmit(values => handleRegistration(values))}>
           <TextInput
             required
@@ -62,6 +67,14 @@ const Register = () => {
             <Button type="submit">Register</Button>
           </Group>
         </form>
+      </Box>
+      <Box sx={{ maxWidth: 300 }} style={{
+        position: "relative",
+        marginTop: "20%"
+      }}
+        mx="auto"
+      >
+        {error && <Error >{error.message}</Error>}
       </Box>
     </Container>
   );

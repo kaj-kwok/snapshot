@@ -38,7 +38,7 @@ const postReducer = createSlice({
       return { ...state, post: post }
     },
     setLoading: (state, action) => {
-      return { ...state, setLoading: true }
+      return { ...state, setLoading: action.payload }
     }
   }
 })

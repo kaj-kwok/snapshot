@@ -1,10 +1,12 @@
-import { SimpleGrid, Loader, Box } from "@mantine/core";
+import { SimpleGrid, Loader } from "@mantine/core";
+import { useSelector } from "react-redux";
 import Post from './post'
 
 const Posts = ({ posts }) => {
+  const isLoading = useSelector(state => state.posts.setLoading)
 
   return (
-    !posts.length ? <Loader /> : (
+    isLoading ? <Loader /> : (
       <SimpleGrid
         cols={3}
         spacing="lg"
@@ -18,7 +20,7 @@ const Posts = ({ posts }) => {
         ))}
       </SimpleGrid>
     )
-  );
+  )
 };
 
 export default Posts;

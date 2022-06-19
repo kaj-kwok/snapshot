@@ -8,11 +8,15 @@ const DetailedPost = () => {
   const { slug } = useParams()
   const dispatch = useDispatch()
   const post = useSelector(state => state.posts.post)
+  const isLoading = useSelector(state => state.posts.setLoading)
 
   useEffect(() => {
     dispatch(getPost(slug))
   }, [slug])
 
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
 
   return (
     <div style={{ width: '100%', margin: 'auto' }}>
