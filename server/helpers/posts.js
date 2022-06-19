@@ -11,8 +11,10 @@ export const getAllPosts = async (req, res) => {
 }
 
 export const getThisPost = async (req, res) => {
+  const id = req.params.id
+  console.log("id is ", id);
   try {
-    const thisPost = await Post.findById(req.params.id)
+    const thisPost = await Post.findById(id)
     console.log(thisPost);
     res.status(200).json(thisPost)
   } catch (error) {
@@ -59,6 +61,7 @@ export const deletePost = async (req, res) => {
 export const getTags = async (req, res) => {
   try {
     const tags = await Post.distinct("tags")
+    console.log(tags);
     res.status(200).json(tags)
   } catch (error) {
     console.log(error);
@@ -67,7 +70,7 @@ export const getTags = async (req, res) => {
 
 export const searchByTag = async (req, res) => {
   const { tags } = req.query
-  console.log(tags);
+  console.log("tags", tags);
   try {
     const posts = await Post.find({ tags: { $in: tags.split(',') } })
     res.status(200).json(posts)

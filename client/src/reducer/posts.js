@@ -24,7 +24,7 @@ const postReducer = createSlice({
       return state.filter((post) => (post._id !== action.payload))
     },
     fetchBySearch: (state, action) => {
-      return action.payload
+      return { ...state, posts: action.payload }
     },
     fetchMyPosts: (state, action) => {
       return action.payload

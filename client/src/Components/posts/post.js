@@ -12,16 +12,19 @@ const Post = ({ post }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const user = useSelector(state => state.users.user)
-  const handleDeletePost = () => {
+
+  const handleDeletePost = (e) => {
+    e.stopPropagation()
     dispatch(deletePost(post._id))
   }
 
-  const handleLikePost = () => {
+  const handleLikePost = (e) => {
     console.log("user.id", user.id, "post._id", post._id);
+    e.stopPropagation()
     dispatch(likePost(user?.id, post._id))
   }
 
-  const handleDetailedPost = () => {
+  const handleDetailedPost = (e) => {
     navigate(`/posts/${post._id}`, { replace: true })
   }
 
@@ -98,11 +101,11 @@ const Post = ({ post }) => {
           </Group>
         </Group>
       </Card.Section>
-      <Card.Section>{post.tags.map(tag => <Badge key={tag}
+      <Card.Section style={{ marginTop: "5px" }}>{post.tags.map(tag => <Badge key={tag}
         style={{ margin: "5px" }}
       >{`#${tag}`}</Badge>)}
       </Card.Section>
-      <Text lineClamp={3}>
+      <Text lineClamp={2} style={{ height: "50px", marginTop: "10px" }}>
         {post.description}
       </Text>
       <CardSection>
