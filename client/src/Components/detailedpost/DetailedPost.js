@@ -2,20 +2,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react'
 import { getPost } from '../../actions/posts';
-import { Card, Image, Text, Group, Paper, Badge, Box, Container, MediaQuery } from '@mantine/core';
+import { Card, Text, Group, Badge, Box, Container, Loader } from '@mantine/core';
 
 const DetailedPost = () => {
   const { slug } = useParams()
   const dispatch = useDispatch()
-  const post = useSelector(state => state.posts.post)
   const isLoading = useSelector(state => state.posts.setLoading)
+  const post = useSelector(state => state.posts.allPosts.filter(post => post._id === slug)[0])
 
   useEffect(() => {
     dispatch(getPost(slug))
   }, [slug])
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <Loader />
   }
 
   return (

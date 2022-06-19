@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  posts: [],
+  allPosts: [],
   post: [],
   setLoading: false,
 }
@@ -13,16 +13,16 @@ const postReducer = createSlice({
   reducers: {
     create: (state, action) => {
       const post = action.payload
-      state.posts.push(post)
+      state.allPosts.push(post)
     },
     fetch_all: (state, action) => {
-      return { ...state, posts: action.payload }
+      return { ...state, allPosts: action.payload }
     },
     edit: (state, action) => {
-      return state.map((post) => (post._id === action.payload._id ? action.payload : post))
+      return { ...state, allPosts: state.allPosts.map((post) => (post._id === action.payload._id ? action.payload : post)) }
     },
     delete_Post: (state, action) => {
-      return state.filter((post) => (post._id !== action.payload))
+      return { ...state, allPosts: state.allPosts.filter((post) => (post._id !== action.payload)) }
     },
     fetchBySearch: (state, action) => {
       return { ...state, posts: action.payload }
@@ -31,11 +31,12 @@ const postReducer = createSlice({
       return action.payload
     },
     updateLikes: (state, action) => {
-      return state.map((post) => (post._id === action.payload._id ? action.payload : post))
+      return { ...state, allPosts: state.allPosts.map((post) => (post._id === action.payload._id ? action.payload : post)) }
     },
     fetchPost: (state, action) => {
-      const post = action.payload
-      return { ...state, post: post }
+      const updatedPost = action.payload
+      const updateState = state.allPosts.map(post => post._id === updatedPost._id ? updatedPost : post)
+      return { ...state, allPosts: updateState }
     },
     setLoading: (state, action) => {
       return { ...state, setLoading: action.payload }

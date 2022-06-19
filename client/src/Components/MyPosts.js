@@ -4,7 +4,7 @@ import Posts from './posts/posts'
 
 const MyPosts = () => {
   const user = useSelector(state => state.users.user)
-  const posts = useSelector(state => state.posts.posts.filter(post => post.user_id === user.id))
+  const posts = useSelector(state => state.posts.allPosts.filter(post => post.user_id === user.id))
   return (
     <Container>
       <Posts posts={posts} />

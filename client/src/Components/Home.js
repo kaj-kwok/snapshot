@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Posts from "./posts/posts";
 
 const Home = () => {
-  const posts = useSelector(state => state.posts.posts)
+  const posts = useSelector(state => state.posts.allPosts)
 
   const dispatch = useDispatch()
   useEffect(() => {

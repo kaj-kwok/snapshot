@@ -25,6 +25,8 @@ export const getPost = (id) => async (dispatch) => {
   dispatch(setLoading(true))
   try {
     const { data } = await getThisPost(id)
+
+    console.log(data);
     dispatch(fetchPost(data))
     dispatch(setLoading(false))
   } catch (error) {
