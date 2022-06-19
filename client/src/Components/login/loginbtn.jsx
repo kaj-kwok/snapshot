@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const LoginBtn = () => {
   return (
-    <Button component={Link} to="/Login" variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>Login</Button>
+    <Button component={Link} to="/auth/login" variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>Login</Button>
   )
 }
 

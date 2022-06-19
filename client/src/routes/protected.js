@@ -5,7 +5,7 @@ const AuthRoute = () => {
   const user = useSelector(state => state.users.user)
 
   if (!user) {
-    return <Navigate to="/login" />
+    return <Navigate to="/auth/login" />
   }
 
   return <Outlet />

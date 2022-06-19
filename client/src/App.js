@@ -11,6 +11,7 @@ import Search from './Components/Search';
 import Login from './Components/login/login'
 import AuthRoute from './routes/protected';
 import DetailedPost from './Components/detailedpost/DetailedPost';
+import Register from './Components/register/Register';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('dark');
@@ -37,7 +38,8 @@ function App() {
                   </Route>
                   <Route path="posts/:slug" element={<DetailedPost />}></Route>
                   <Route path="search" element={<Search />} />
-                  <Route path="login" element={<Login />} />
+                  <Route path="/auth/login" element={<Login />} />
+                  <Route path="/auth/register" element={<Register />} />
                   <Route path="*" element={<p>Oops page not found</p>} />
                 </Route>
               </Routes>

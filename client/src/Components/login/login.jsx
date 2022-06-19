@@ -1,9 +1,10 @@
 import { useForm } from "@mantine/form";
-import { TextInput, Button, Group, Box, PasswordInput, Text } from '@mantine/core';
+import { TextInput, Button, Group, Box, PasswordInput, Anchor } from '@mantine/core';
 import { LoginUser } from "../../actions/auth";
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Error from "../notifications/error";
+
 
 const Login = () => {
   const error = useSelector(state => state.users.error)
@@ -56,8 +57,8 @@ const Login = () => {
             placeholder="Confirm Password"
             {...form.getInputProps('confirmPassword')}
           />
-
-          <Group position="right" mt="md">
+          <Group position="right" mt="md" style={{ justifyContent: 'space-between' }}>
+            <Anchor size="sm" component={Link} to='/auth/register'>Create Account</Anchor>
             <Button type="submit" variant='gradient'>Submit</Button>
           </Group>
         </form>

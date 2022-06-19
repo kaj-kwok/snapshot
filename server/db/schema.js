@@ -2,9 +2,18 @@ import mongoose from "mongoose"
 
 const postSchema = new mongoose.Schema(
   {
-    user_id: String,
-    creator: String,
-    title: String,
+    user_id: {
+      type: String,
+      required: true,
+    },
+    creator: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
     description: String,
     tags: [String],
     uploadedFile: String,
