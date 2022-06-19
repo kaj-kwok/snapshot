@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
             />
           </MediaQuery>
           <Box>
-            <Text component='h1' style={{ fontSize: "1.5rem" }}>Memories</Text>
+            <Text component='h1' style={{ fontSize: "1.5rem" }}>Snapshot</Text>
             <Text
               style={{ fontSize: "0.75em", fontStyle: 'italic' }}
             >
