@@ -22,7 +22,6 @@ export const fetchAllPosts = () => async (dispatch) => {
 export const getPost = (id) => async (dispatch) => {
   try {
     const { data } = await getThisPost(id)
-    console.log(data);
     dispatch(fetchPost(data))
   } catch (error) {
     console.log(error);

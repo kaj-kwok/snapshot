@@ -25,6 +25,12 @@ const Post = ({ post }) => {
     navigate(`/posts/${post._id}`, { replace: true })
   }
 
+  const handleEditClick = (e) => {
+    //stop the event from bubbling up
+    e.stopPropagation()
+    navigate(`/editpost/${post._id}`, { replace: true })
+  }
+
   return (
     <Card shadow="sm" p="lg" sx={{
       '&:hover': {
@@ -34,26 +40,28 @@ const Post = ({ post }) => {
         }
       }
     }}
-      style={{ position: "relative" }}
+      style={{ position: "relative", zIndex: "1" }}
       onClick={handleDetailedPost}
     >
       <Card.Section style={{ position: "relative" }}>
         <Image src={post.uploadedFile || fileNotFound} height={250} width="100%" fit="contain" />
-        {user?.id === post.user_id && <Link to={`/editpost/${post._id}`}>
+        {user?.id === post.user_id &&
           <UnstyledButton
             sx={{
               '&:hover': {
                 color: "#4267B2"
-              }
+              },
             }}
             style={{
               position: "absolute",
+              zIndex: 20,
               top: 5,
               right: 5
             }}
+            onClick={handleEditClick}
           >
             <IconDots /></UnstyledButton>
-        </Link>}
+        }
         <Group
           id="textbox"
           sx={{
@@ -94,7 +102,7 @@ const Post = ({ post }) => {
         style={{ margin: "5px" }}
       >{`#${tag}`}</Badge>)}
       </Card.Section>
-      <Text>
+      <Text lineClamp={3}>
         {post.description}
       </Text>
       <CardSection>

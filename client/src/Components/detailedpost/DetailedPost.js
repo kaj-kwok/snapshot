@@ -2,13 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react'
 import { getPost } from '../../actions/posts';
-import { Card, Image, Text, Group, Paper } from '@mantine/core';
+import { Card, Image, Text, Group, Paper, Badge, Box } from '@mantine/core';
 
 const DetailedPost = () => {
   const { slug } = useParams()
   const dispatch = useDispatch()
   const post = useSelector(state => state.posts.post)
-  console.log(post);
 
   useEffect(() => {
     dispatch(getPost(slug))
@@ -19,7 +18,7 @@ const DetailedPost = () => {
     <div style={{ width: '100%', margin: 'auto' }}>
       <Card shadow="sm" p="lg" >
         <Paper style={{
-          display: 'flex', justifyContent: 'center', marginLeft: "40px", marginRight: "40px "
+          display: 'flex', justifyContent: 'center'
         }} >
           < Image src={post?.uploadedFile
           } alt="profile" fit="contain" height={900} />
@@ -30,9 +29,14 @@ const DetailedPost = () => {
         </Group>
 
         <Text size="sm" style={{ color: "grey", lineHeight: 1.5 }}>
-          With Fjord Tours you can explore more of the magical fjord landscapes with tours and
-          activities on and around the fjords of Norway
+          {post.description}
         </Text>
+        <Box style={{ paddingTop: '2em' }}>
+          {post?.tags?.map(tag => (
+            <Badge key={tag} style={{ margin: '5px' }}>{`#${tag}`}</Badge>
+          ))
+          }
+        </Box>
       </Card>
     </div >
   )

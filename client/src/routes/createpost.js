@@ -23,7 +23,7 @@ const CreatePost = () => {
   const user = useSelector(state => state.users.user)
   const theme = useMantineTheme();
   const { slug } = useParams()
-  const post = useSelector((state) => (slug ? state.posts.find((message) => message._id === slug) : null));
+  const post = useSelector((state) => (slug ? state.posts.posts.find((message) => message._id === slug) : null));
   const navigate = useNavigate()
 
   const [file, setFile] = useState('')
