@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { store } from '../reducer/index';
 
-const url = "http://localhost:5000"
+const url = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 store.subscribe(listener)
 
