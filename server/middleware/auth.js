@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 export const checkAuth = (req, res, next) => {
   const headers = req.headers.authorization
   const token = headers.split(' ')[1]
+  console.log(token);
   if (!token) {
     return res.status(403).json({ message: "no token provided" })
   }

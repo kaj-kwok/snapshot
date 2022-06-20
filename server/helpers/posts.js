@@ -15,7 +15,6 @@ export const getThisPost = async (req, res) => {
   console.log("id is ", id);
   try {
     const thisPost = await Post.findById(id)
-    console.log(thisPost);
     res.status(200).json(thisPost)
   } catch (error) {
     console.log(error);
@@ -40,7 +39,7 @@ export const editPost = async (req, res) => {
   const post = req.body
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post Found with id: ${id}`)
   try {
-    const updatePost = await Post.findByIdAndUpdate(id, post)
+    const updatePost = await Post.findByIdAndUpdate(id, post, { new: true })
     res.status(200).json(updatePost)
   } catch (error) {
     console.log(error);

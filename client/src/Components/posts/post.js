@@ -47,7 +47,7 @@ const Post = ({ post }) => {
       onClick={handleDetailedPost}
     >
       <Card.Section style={{ position: "relative" }}>
-        <Image src={post.uploadedFile || fileNotFound} height={250} width="100%" fit="contain" />
+        <Image src={post.uploadedFile || fileNotFound} height={350} width="100%" fit="contain" />
         {user?.id === post.user_id &&
           <UnstyledButton
             sx={{

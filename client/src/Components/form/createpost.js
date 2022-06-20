@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import { Box, TextInput, Group, Button, CSSObject, useMantineTheme } from '@mantine/core'
+import { Box, TextInput, Group, Button, CSSObject, useMantineTheme, Image } from '@mantine/core'
 import { useForm } from '@mantine/form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import { createNewPost, updatePost } from '../actions/posts'
+import { createNewPost, updatePost } from '../../actions/posts'
 import { useParams } from "react-router-dom";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
-import { dropzoneChildren } from '../Components/form/formdropzone';
-import { convertBase64 } from '../Components/form/convertbase64'
+import { dropzoneChildren } from './formdropzone';
+import { convertBase64 } from './convertbase64'
 
 const useStyle: CSSObject = {
   border: '1px dashed white',
@@ -27,6 +27,7 @@ const CreatePost = () => {
   const navigate = useNavigate()
 
   const [file, setFile] = useState('')
+  const [preview, setPreview] = useState('')
   const form = useForm({
     initialValues: {
       user_id: user.id,
@@ -48,7 +49,7 @@ const CreatePost = () => {
 
   const handleSubmitForm = (values) => {
     if (slug) {
-      const tags = values.tags.toString().split(',').trim()
+      const tags = values.tags.split(',').map(str => str.trim())
       const post = { ...values, uploadedFile: file, tags: tags }
       dispatch(updatePost(slug, post))
     } else {
@@ -64,6 +65,7 @@ const CreatePost = () => {
   const handleClearForm = () => {
     form.reset()
     setFile('')
+    setPreview('')
   }
 
   return (
@@ -91,6 +93,9 @@ const CreatePost = () => {
           onDrop={async (files) => {
             console.log('accepted files', files)
             const encodedFile = await convertBase64(files[0])
+            const preview = URL.createObjectURL(files[0])
+            console.log(preview);
+            setPreview(preview)
             setFile(encodedFile)
           }}
           onReject={(files) => console.log('rejected files', files)}
@@ -101,8 +106,9 @@ const CreatePost = () => {
             marginTop: "20px"
           }}
         >
-          {(status) => dropzoneChildren(status, theme)}
+          {(status) => dropzoneChildren(status, theme, preview)}
         </Dropzone>
+
         <Group position="right" mt="md">
           <Button type="submit" variant='gradient'>Create Post</Button>
         </Group>

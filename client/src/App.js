@@ -4,12 +4,12 @@ import theme from "./theme/theme"
 import Layout from './Components/layout.js/layout';
 import Application from './Components/Application'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CreatePost from './routes/createpost';
+import CreatePost from './Components/form/createpost';
 import Home from './Components/Home'
 import MyPosts from './Components/MyPosts';
 import Search from './Components/Search';
 import Login from './Components/login/login'
-import AuthRoute from './routes/protected';
+import AuthRoute from './middleware/protected';
 import DetailedPost from './Components/detailedpost/DetailedPost';
 import Register from './Components/register/Register';
 

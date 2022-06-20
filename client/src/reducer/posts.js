@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   allPosts: [],
-  post: [],
   setLoading: false,
 }
 
@@ -19,13 +18,15 @@ const postReducer = createSlice({
       return { ...state, allPosts: action.payload }
     },
     edit: (state, action) => {
-      return { ...state, allPosts: state.allPosts.map((post) => (post._id === action.payload._id ? action.payload : post)) }
+      const updatedPost = action.payload
+      const updateState = state.allPosts.map(post => post._id === updatedPost._id ? updatedPost : post)
+      return { ...state, allPosts: updateState }
     },
     delete_Post: (state, action) => {
       return { ...state, allPosts: state.allPosts.filter((post) => (post._id !== action.payload)) }
     },
     fetchBySearch: (state, action) => {
-      return { ...state, posts: action.payload }
+      return { ...state, allPosts: action.payload }
     },
     fetchMyPosts: (state, action) => {
       return action.payload

@@ -64,7 +64,8 @@ const Login = () => {
       </Box>
       <Box sx={{ maxWidth: 300 }} style={{
         position: "relative",
-        marginTop: "20%"
+        marginTop: "20%",
+        width: "100%",
       }}
         mx="auto"
       >
