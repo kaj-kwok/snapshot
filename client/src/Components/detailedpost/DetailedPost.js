@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react'
 import { getPost } from '../../actions/posts';
 import { Card, Text, Group, Badge, Box, Container, Loader, Anchor } from '@mantine/core';
@@ -10,6 +10,8 @@ const DetailedPost = () => {
   const dispatch = useDispatch()
   const isLoading = useSelector(state => state.posts.setLoading)
   const post = useSelector(state => state.posts.allPosts.filter(post => post._id === slug)[0])
+  const findIndex = useSelector(state => state.posts.allPosts.findIndex(post => post._id === slug))
+  const posts = useSelector(state => state.posts.allPosts)
 
   useEffect(() => {
     dispatch(getPost(slug))
@@ -32,21 +34,24 @@ const DetailedPost = () => {
           overflow: 'hidden',
           position: 'relative'
         }}>
-          <Anchor
-            style={{
-              position: 'absolute',
-              left: '0',
-              width: '50%',
-              height: '100%',
-              overflow: 'hidden',
-            }}
-          >
-            <IconArrowLeft size={50} color="white" style={{ position: 'absolute', top: '50%' }} />
-          </Anchor>
-
+          {(findIndex !== 0 &&
+            <Anchor
+              style={{
+                position: 'absolute',
+                left: '0',
+                width: '50%',
+                height: '100%',
+                overflow: 'hidden',
+              }}
+              component={Link}
+              to={`/posts/${posts[findIndex - 1]?._id}`}
+            >
+              <IconArrowLeft size={50} color="white" style={{ position: 'absolute', top: '50%' }} />
+            </Anchor>
+          )}
           <img src={post?.uploadedFile
           } alt="profile" object-fit="contain" height="100%" width="100%" />
-          <Anchor
+          {(findIndex !== posts.length - 1) && <Anchor
             style={{
               position: 'absolute',
               right: '0',
@@ -54,10 +59,14 @@ const DetailedPost = () => {
               height: '100%',
               overflow: 'hidden',
             }}
+            component={Link}
+            to={`/posts/${posts[findIndex + 1]?._id}`}
+
           >
             <span><IconArrowRight size={50} color="white" style={{ position: 'absolute', top: '50%', right: 0 }} />
             </span>
           </Anchor>
+          }
 
         </Box>
 

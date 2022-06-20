@@ -5,7 +5,7 @@ export const LoginUser = (user, navigate) => async (dispatch) => {
   try {
     const { data } = await userLogin(user)
     dispatch(loginUser(data))
-    navigate('/posts')
+    navigate('/posts', { replace: true })
   } catch (error) {
     dispatch(loginError(error.response.data))
     setTimeout(() => {
@@ -18,7 +18,7 @@ export const registerUser = (values, navigate) => async (dispatch) => {
   try {
     const { data } = await sendUser(values)
     dispatch(loginUser(data))
-    navigate('/posts')
+    navigate('/posts', { replace: true })
   } catch (error) {
     dispatch(loginError(error.response.data))
     setTimeout(() => {
