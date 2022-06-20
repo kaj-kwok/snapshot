@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Box, TextInput, Group, Button, CSSObject, useMantineTheme, Image } from '@mantine/core'
+import { Box, TextInput, Group, Button, CSSObject, useMantineTheme } from '@mantine/core'
 import { useForm } from '@mantine/form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'

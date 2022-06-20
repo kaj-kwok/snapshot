@@ -1,4 +1,4 @@
-import { Text, Box } from '@mantine/core';
+import { Text } from '@mantine/core';
 import { IconThumbUp } from '@tabler/icons';
 
 const Like = ({ likes, user }) => {

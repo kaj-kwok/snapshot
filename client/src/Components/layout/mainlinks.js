@@ -35,7 +35,7 @@ const data = [
   { icon: <IconHome size={16} />, color: 'blue', label: 'Home', href: '/' },
   { icon: <IconBrandInstagram size={16} />, color: 'teal', label: 'My Posts', href: '/posts' },
   { icon: <IconCirclePlus size={16} />, color: 'violet', label: 'Create new Post', href: '/createpost' },
-  { icon: <IconSearch size={16} />, color: 'grape', label: 'Search', href: '/search' },
+  // { icon: <IconSearch size={16} />, color: 'grape', label: 'Search', href: '/search' },
 ];
 
 

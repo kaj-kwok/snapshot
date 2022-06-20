@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 import theme from "./theme/theme"
-import Layout from './Components/layout.js/layout';
+import Layout from './Components/layout/layout';
 import Application from './Components/Application'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePost from './Components/form/createpost';

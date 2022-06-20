@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
 
       </Navbar>
       }
-      header={<Header height={70} p="md" style={{ display: "flex", justifyContent: "space-between" }} >
+      header={<Header height={70} p="md" style={{ display: "flex", justifyContent: "space-between", gap: "10px" }} >
         <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Burger
@@ -42,7 +42,9 @@ const Layout = ({ children }) => {
         <Box
           style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}
         >
-          <SearchBar />
+          <SearchBar
+            sx={{ marginLeft: '10px' }}
+          />
           {!user ? <LoginBtn /> : <LogoutBtn />}
           <Darkmode />
         </Box>
