@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from "express";
-import morgan from "morgan";
+// import morgan from "morgan";
 import mongoose from "mongoose";
 import bodyParser from "body-parser"
 import postRoutes from "./routes/posts.js"
