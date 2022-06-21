@@ -9,11 +9,11 @@ Live Demo: https://peaceful-dolphin-a638b6.netlify.app/
 
 ## Tech Stack
 
-> Client - React, Redux/Toolkit, Mantine, Tabler Icons
+> Client - React, Redux/Toolkit, React Router v6, Mantine, Tabler Icons
 
 > Server - Express, bcrypt, JWT, mongoose
 
-> DB - MongoDB
+> DB - MongoDB Atlas
 
 ## Instructions
 
