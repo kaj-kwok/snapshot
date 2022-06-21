@@ -12,8 +12,13 @@ export const SearchBar = () => {
 
   useEffect(() => {
     async function fetchAllTags() {
-      const tags = await dispatch(fetchTags())
-      setTagsAvailable(tags);
+      try {
+        const tags = await dispatch(fetchTags())
+        setTagsAvailable(tags);
+
+      } catch (error) {
+        console.log(error);
+      }
     }
     fetchAllTags()
 
@@ -29,8 +34,7 @@ export const SearchBar = () => {
   return (
     <MultiSelect
       icon={<Hash />}
-      data={tagsAvailable}
-      // label="All your tags"
+      data={tagsAvailable || []}
       placeholder="Pick your tags"
       onDropdownOpen={() => setOpened(true)}
       onDropdownClose={() => setOpened(false)}
